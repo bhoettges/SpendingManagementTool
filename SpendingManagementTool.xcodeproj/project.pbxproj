@@ -16,6 +16,8 @@
 		855B23DD26498B47009C20A9 /* Category.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 855B23DB26498B47009C20A9 /* Category.xcdatamodeld */; };
 		855B23E52649A7B9009C20A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B23E42649A7B9009C20A9 /* DetailViewController.swift */; };
 		855B23F02649AFAE009C20A9 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B23EF2649AFAE009C20A9 /* MasterViewController.swift */; };
+		855B23F8264AA566009C20A9 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B23F7264AA566009C20A9 /* AddCategoryViewController.swift */; };
+		855B2402264B112F009C20A9 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		855B23DC26498B47009C20A9 /* Category.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Category.xcdatamodel; sourceTree = "<group>"; };
 		855B23E42649A7B9009C20A9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		855B23EF2649AFAE009C20A9 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		855B23F7264AA566009C20A9 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +71,10 @@
 				855B23C826498220009C20A9 /* ViewController.swift */,
 				855B23E42649A7B9009C20A9 /* DetailViewController.swift */,
 				855B23EF2649AFAE009C20A9 /* MasterViewController.swift */,
-				855B23CA26498220009C20A9 /* Main.storyboard */,
+				855B23F7264AA566009C20A9 /* AddCategoryViewController.swift */,
+				855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */,
 				855B23CD26498220009C20A9 /* Assets.xcassets */,
+				855B23CA26498220009C20A9 /* Main.storyboard */,
 				855B23CF26498220009C20A9 /* LaunchScreen.storyboard */,
 				855B23D226498220009C20A9 /* Info.plist */,
 				855B23DB26498B47009C20A9 /* Category.xcdatamodeld */,
@@ -147,10 +153,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				855B23C926498220009C20A9 /* ViewController.swift in Sources */,
+				855B2402264B112F009C20A9 /* CategoryDetailViewController.swift in Sources */,
 				855B23C526498220009C20A9 /* AppDelegate.swift in Sources */,
 				855B23F02649AFAE009C20A9 /* MasterViewController.swift in Sources */,
 				855B23E52649A7B9009C20A9 /* DetailViewController.swift in Sources */,
 				855B23C726498220009C20A9 /* SceneDelegate.swift in Sources */,
+				855B23F8264AA566009C20A9 /* AddCategoryViewController.swift in Sources */,
 				855B23DD26498B47009C20A9 /* Category.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

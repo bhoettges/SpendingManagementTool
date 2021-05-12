@@ -42,7 +42,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
         newCategory.name = "House"
         newCategory.colour = "RED"
-        newCategory.monthlybudget = 2300
+        newCategory.monthlybudget = "2300"
         newCategory.notes = "Only for house expenses"
 
         // Save the context.
