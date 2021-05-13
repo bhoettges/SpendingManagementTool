@@ -33,8 +33,10 @@ class AddCategoryViewController: UIViewController {
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
             
+            
         }
         else {
+//            UIAlertView(title: "Warning", message: "Please enter a category name", delegate: Any?(nilLiteral), cancelButtonTitle: "back" )
             //ADD ALERT IF NO CATEGORY NAME IS FILLED OUT
         }
         

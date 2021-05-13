@@ -81,7 +81,7 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
         }
         print("Sum of Expenses: ",sumOfExpenses)
         print("    ")
-        let padding: CGFloat = 20
+        let padding: CGFloat = 10
         let height = (view.frame.height - padding * 2) / 3
 
         
@@ -89,7 +89,7 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
         labelCategoryMonthlyBudget.text = categoryMonthlyBudget
         
         pieChartView.frame = CGRect(
-             x: 10, y: 5,
+             x: 3, y: 3,
              width: view.frame.size.width, height: height
            )
 

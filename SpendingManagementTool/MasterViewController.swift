@@ -85,12 +85,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let category = fetchedResultsController.object(at: indexPath)
-        configureCell(cell, withCategory: category)
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = self.cellSelColour
-        cell.selectedBackgroundView = backgroundView        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
+        
+        configureCell(cell, indexPath: indexPath)
+//        let category = fetchedResultsController.object(at: indexPath)
+//        let backgroundView = UIView()
+//        backgroundView.backgroundColor = self.cellSelColour
+//        cell.selectedBackgroundView = backgroundView
         return cell
     }
 
@@ -114,10 +115,23 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }
     }
+    
+    var category: Category?
 
-    func configureCell(_ cell: UITableViewCell, withCategory category: Category) {
+
+    func configureCell(_ cell: CategoryTableViewCell, indexPath: IndexPath) {
         
-        cell.textLabel!.text = category.name
+            let name = self.fetchedResultsController.fetchedObjects?[indexPath.row].name
+            let notes = self.fetchedResultsController.fetchedObjects?[indexPath.row].notes
+            let budget = self.fetchedResultsController.fetchedObjects?[indexPath.row].monthlybudget
+            
+            
+        cell.labelCategoryName.text = name
+        cell.labelCategoryNotes.text = notes
+        cell.labelCategoryBudget.text = budget
+        
+        
+        
     }
 
     // MARK: - Fetched results controller
@@ -179,9 +193,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withCategory: anObject as! Category)
+                self.configureCell(tableView.cellForRow(at: indexPath!)! as! CategoryTableViewCell, indexPath: newIndexPath!)
             case .move:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withCategory: anObject as! Category)
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)
             default:
                 return

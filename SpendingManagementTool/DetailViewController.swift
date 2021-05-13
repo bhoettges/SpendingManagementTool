@@ -47,20 +47,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         configureCell(cell, indexPath:indexPath)
         return cell
     }
-    
-  
-
-    func configureView() {
-        // Update the user interface for the detail item.
-//        if let category = category {
-//        }
-        }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        configureView()
     }
 
     var category: Category?
@@ -114,7 +104,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let date = self.fetchedResultsController.fetchedObjects?[indexPath.row].date
             let occurence = self.fetchedResultsController.fetchedObjects?[indexPath.row].occurrence
             let reminderflag = self.fetchedResultsController.fetchedObjects?[indexPath.row].reminderflag
-//            let progress = self.fetchedResultsController.fetchedObjects?[indexPath.row].amount
             
             let formatter1 = DateFormatter()
             formatter1.dateStyle = .short

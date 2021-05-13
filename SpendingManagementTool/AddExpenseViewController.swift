@@ -21,6 +21,11 @@ class AddExpenseViewController: UIViewController {
     var category: Category?
     var expense: Expense?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter an amount/notes to add an expense!", preferredStyle: .alert)
+    let noCategoryAlert = UIAlertController (title: "Warning", message: "Please create a Category before adding an expense.", preferredStyle: .alert)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,24 +36,31 @@ class AddExpenseViewController: UIViewController {
     
     @IBAction func saveExpense(_ sender: UIButton) {
         let newexpense = Expense(context: context)
+        
+        if (self.category == nil){
+            noCategoryAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(noCategoryAlert, animated: true)
+        }
        
-        if self.textFieldAmount.text != "" {
-            
-        
-        newexpense.category = category?.name
-        newexpense.amount = Double(textFieldAmount.text!)!
-        newexpense.notes = self.textFieldNotes.text
-        newexpense.date = self.DatePicker.date
-        newexpense.expenseCategory = category
-        newexpense.occurrence = Int16(OccurenceControl.selectedSegmentIndex)
-        newexpense.reminderflag = switchToggleCalendar.isOn
-        
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            
-            print("expense:", newexpense)
+        else if (self.textFieldAmount.text == "" || self.textFieldNotes.text == ""){
+                namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(namealert,animated: true)
         }
         else {
-            //ADD ALERT IF NO EXPENSE AMOUNT IS FILLED OUT
+            newexpense.category = category?.name
+            newexpense.amount = Double(textFieldAmount.text!)!
+            newexpense.notes = self.textFieldNotes.text
+            newexpense.date = self.DatePicker.date
+            newexpense.expenseCategory = category
+            newexpense.occurrence = Int16(OccurenceControl.selectedSegmentIndex)
+            newexpense.reminderflag = switchToggleCalendar.isOn
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
+                print("expense:", newexpense)
+            //update PIE CHART!
+            
+                
         }
     }
     
