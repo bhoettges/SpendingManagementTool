@@ -12,6 +12,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
+    let cellSelColour:UIColor = UIColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2)
+    
 
 
     override func viewDidLoad() {
@@ -86,6 +88,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let category = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withCategory: category)
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = self.cellSelColour
+        cell.selectedBackgroundView = backgroundView        
         return cell
     }
 

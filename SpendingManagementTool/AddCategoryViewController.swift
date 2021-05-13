@@ -31,9 +31,11 @@ class AddCategoryViewController: UIViewController {
 //            newCategory.colour = self.text.text ADD COLOUR PICKER
             newCategory.notes = self.textFieldCategoryNotes.text
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            
         }
         else {
-            //ADD ALERT IF NO ARTIST NAME IS FILLED OUT
+            //ADD ALERT IF NO CATEGORY NAME IS FILLED OUT
         }
         
     }

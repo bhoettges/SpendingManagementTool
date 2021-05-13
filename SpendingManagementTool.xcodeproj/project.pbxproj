@@ -19,6 +19,7 @@
 		855B23F8264AA566009C20A9 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B23F7264AA566009C20A9 /* AddCategoryViewController.swift */; };
 		855B2402264B112F009C20A9 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */; };
 		855B2407264C0122009C20A9 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B2406264C0122009C20A9 /* AddExpenseViewController.swift */; };
+		857FCB00264D564C007C3CF8 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		855B23F7264AA566009C20A9 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		855B2406264C0122009C20A9 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				855B23CF26498220009C20A9 /* LaunchScreen.storyboard */,
 				855B23D226498220009C20A9 /* Info.plist */,
 				855B23DB26498B47009C20A9 /* Category.xcdatamodeld */,
+				857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */,
 			);
 			path = SpendingManagementTool;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				857FCB00264D564C007C3CF8 /* ExpenseTableViewCell.swift in Sources */,
 				855B23C926498220009C20A9 /* ViewController.swift in Sources */,
 				855B2402264B112F009C20A9 /* CategoryDetailViewController.swift in Sources */,
 				855B23C526498220009C20A9 /* AppDelegate.swift in Sources */,
