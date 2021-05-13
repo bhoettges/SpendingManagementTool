@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xl3-KZ-WhX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1331.6949152542375" y="-1302.439024390244"/>
+            <point key="canvasLocation" x="1474" y="-1333"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -380,9 +380,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afC-9f-p1q">
-                                <rect key="frame" x="20" y="20" width="745" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afC-9f-p1q">
+                                <rect key="frame" x="20" y="20" width="745" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="745" id="ICo-DA-83i"/>
+                                    <constraint firstAttribute="height" constant="59" id="Sj8-gg-WVJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -394,9 +397,54 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spent: £" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER0-hK-gmd">
+                                <rect key="frame" x="71" y="188" width="65" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgI-SN-De3">
+                                <rect key="frame" x="137" y="188" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remaining: £" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huP-79-fHj">
+                                <rect key="frame" x="37" y="217" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjE-nb-tFX">
+                                <rect key="frame" x="137" y="217" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iC5-es-vyu" customClass="PieChartView" customModule="SpendingManagementTool" customModuleProvider="target">
+                                <rect key="frame" x="239" y="96" width="164" height="142"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="226" id="4nr-Ul-xz7"/>
+                                    <constraint firstAttribute="width" constant="285" id="V8Z-v9-I62"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bb4-an-Aht"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iC5-es-vyu" firstAttribute="top" secondItem="afC-9f-p1q" secondAttribute="bottom" constant="17" id="3Kz-5A-vWN"/>
+                            <constraint firstItem="afC-9f-p1q" firstAttribute="top" secondItem="Bb4-an-Aht" secondAttribute="top" constant="20" id="6cw-8W-LX4"/>
+                            <constraint firstItem="afC-9f-p1q" firstAttribute="leading" secondItem="Bb4-an-Aht" secondAttribute="leading" constant="20" id="H8A-Ci-mgz"/>
+                            <constraint firstItem="Bb4-an-Aht" firstAttribute="trailing" secondItem="iC5-es-vyu" secondAttribute="trailing" constant="261" id="RrW-4U-QRi"/>
+                            <constraint firstItem="afC-9f-p1q" firstAttribute="centerX" secondItem="Syc-IS-RDb" secondAttribute="centerX" id="TbK-LY-6hm"/>
+                            <constraint firstItem="iC5-es-vyu" firstAttribute="top" secondItem="afC-9f-p1q" secondAttribute="bottom" constant="17" id="ZTj-Qp-bWK"/>
+                            <constraint firstItem="Bb4-an-Aht" firstAttribute="trailing" secondItem="afC-9f-p1q" secondAttribute="trailing" constant="20" id="zp0-Q8-pos"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="labelCategoryMonthlyBudget" destination="KIX-e5-25c" id="k8b-q0-HWJ"/>
@@ -405,22 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8f-zG-2YH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1432.6271186440679" y="75.365853658536579"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="aEU-5j-Kv8">
-            <objects>
-                <viewController id="aZz-MS-usM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GNZ-72-EqK">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="kj6-Pz-VgL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AlI-05-aqV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="665" y="-1310"/>
+            <point key="canvasLocation" x="1432" y="192"/>
         </scene>
         <!--Add Expense View Controller-->
         <scene sceneID="fAk-TT-LSZ">
@@ -511,11 +544,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNb-m3-gLm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1384.5762711864409" y="-467.5609756097561"/>
+            <point key="canvasLocation" x="1519" y="-578"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="Tll-UG-LXB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">

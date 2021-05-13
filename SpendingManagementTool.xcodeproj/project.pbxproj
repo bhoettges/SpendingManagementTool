@@ -20,6 +20,7 @@
 		855B2402264B112F009C20A9 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */; };
 		855B2407264C0122009C20A9 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B2406264C0122009C20A9 /* AddExpenseViewController.swift */; };
 		857FCB00264D564C007C3CF8 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */; };
+		857FCB0D264D7869007C3CF8 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857FCB0C264D7869007C3CF8 /* PieChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		855B2401264B112F009C20A9 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		855B2406264C0122009C20A9 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
+		857FCB0C264D7869007C3CF8 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				855B23D226498220009C20A9 /* Info.plist */,
 				855B23DB26498B47009C20A9 /* Category.xcdatamodeld */,
 				857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */,
+				857FCB0C264D7869007C3CF8 /* PieChartView.swift */,
 			);
 			path = SpendingManagementTool;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				855B23C926498220009C20A9 /* ViewController.swift in Sources */,
 				855B2402264B112F009C20A9 /* CategoryDetailViewController.swift in Sources */,
 				855B23C526498220009C20A9 /* AppDelegate.swift in Sources */,
+				857FCB0D264D7869007C3CF8 /* PieChartView.swift in Sources */,
 				855B23F02649AFAE009C20A9 /* MasterViewController.swift in Sources */,
 				855B2407264C0122009C20A9 /* AddExpenseViewController.swift in Sources */,
 				855B23E52649A7B9009C20A9 /* DetailViewController.swift in Sources */,

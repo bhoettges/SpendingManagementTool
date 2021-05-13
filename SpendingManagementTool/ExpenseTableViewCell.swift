@@ -18,6 +18,8 @@ class ExpenseTableViewCell: UITableViewCell {
     
     
     override func awakeFromNib() {
+        
+        labelName.text = ""
         super.awakeFromNib()
         // Initialization code
     }

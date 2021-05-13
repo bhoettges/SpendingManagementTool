@@ -40,8 +40,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as! ExpenseTableViewCell
         
+        
+
         configureCell(cell, indexPath:indexPath)
         return cell
     }
@@ -104,14 +106,46 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: Configure Cell
     
-    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath){
+    func configureCell(_ cell: ExpenseTableViewCell, indexPath: IndexPath){
         if (self.category != nil)//user must select a category first
         {
             let notes = self.fetchedResultsController.fetchedObjects?[indexPath.row].notes
-            cell.detailTextLabel?.text = notes
+            let amount = self.fetchedResultsController.fetchedObjects?[indexPath.row].amount
+            let date = self.fetchedResultsController.fetchedObjects?[indexPath.row].date
+            let occurence = self.fetchedResultsController.fetchedObjects?[indexPath.row].occurrence
+            let reminderflag = self.fetchedResultsController.fetchedObjects?[indexPath.row].reminderflag
+//            let progress = self.fetchedResultsController.fetchedObjects?[indexPath.row].amount
+            
+            let formatter1 = DateFormatter()
+            formatter1.dateStyle = .short
+
+            cell.labelDueDate.text = (formatter1.string(from: date!))
+            cell.labelName.text = notes
+            cell.labelAmount.text = String(amount ?? 0)
+            
+            if (occurence == 0){
+                cell.labelOccurence.text = "One off"
+            }
+            else if (occurence == 1){
+                cell.labelOccurence.text = "Daily"
+            }
+            else if (occurence == 2){
+                cell.labelOccurence.text = "Weekly"
+            }
+            else if (occurence == 3){
+                cell.labelOccurence.text = "Monthly"
+            }
+            
+            if (reminderflag == true){
+                cell.labelReminder.text = "Reminder Set"
+            }
+            else{
+                cell.labelReminder.text = "Reminder not Set"
+            }
             
             cell.backgroundColor = self.cellSelColour
             
+
             if let amount = self.fetchedResultsController.fetchedObjects?[indexPath.row].amount
             {
                 cell.detailTextLabel?.text = String(amount)
@@ -166,7 +200,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
-                self.configureCell(tableView.cellForRow(at: indexPath!)!, indexPath: newIndexPath!)
+                self.configureCell(tableView.cellForRow(at: indexPath!)! as! ExpenseTableViewCell, indexPath: newIndexPath!)
             case .move:
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)
             default:
@@ -191,7 +225,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if let monthlybudget = self.category?.monthlybudget{
                     
                     destVC.categoryMonthlyBudget = monthlybudget
+                
+                    
                 }
+                
+                            if let expense = self.expense{
+                                let destVC = segue.destination as! AddExpenseViewController
+                                destVC.expense = expense
+                            }
                 
             case "addExpense":
                 if let category = self.category{
