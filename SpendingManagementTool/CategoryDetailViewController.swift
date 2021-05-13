@@ -16,6 +16,7 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
     var categoryName = ""
     var categoryMonthlyBudget = ""
     var category:Category?
+    var expensename:Expense?
     
     var expenses = [Expense]()
     
@@ -95,7 +96,7 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
 
                     
         for (index, expense) in expenses.enumerated() {
-            pieChartView.segments.append(Segment(color: getRandomColor(), name:expense.notes ?? "null"  ,value: CGFloat(expense.amount)))
+            pieChartView.segments.append(Segment(color: getRandomColor(), name:expense.notes!  ,value: CGFloat(expense.amount)))
             
         }
         

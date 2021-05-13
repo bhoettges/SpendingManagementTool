@@ -22,7 +22,7 @@ class AddExpenseViewController: UIViewController {
     var expense: Expense?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter an amount/notes to add an expense!", preferredStyle: .alert)
+    let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter an amount and notes to add an expense!", preferredStyle: .alert)
     let noCategoryAlert = UIAlertController (title: "Warning", message: "Please create a Category before adding an expense.", preferredStyle: .alert)
     
     
@@ -35,18 +35,21 @@ class AddExpenseViewController: UIViewController {
     
     
     @IBAction func saveExpense(_ sender: UIButton) {
-        let newexpense = Expense(context: context)
+        namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        noCategoryAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         if (self.category == nil){
-            noCategoryAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(noCategoryAlert, animated: true)
+            
         }
        
         else if (self.textFieldAmount.text == "" || self.textFieldNotes.text == ""){
-                namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(namealert,animated: true)
+                
         }
         else {
+            let newexpense = Expense(context: context)
+
             newexpense.category = category?.name
             newexpense.amount = Double(textFieldAmount.text!)!
             newexpense.notes = self.textFieldNotes.text
@@ -57,6 +60,8 @@ class AddExpenseViewController: UIViewController {
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 
+            
+            
                 print("expense:", newexpense)
             //update PIE CHART!
             

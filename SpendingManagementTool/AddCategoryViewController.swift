@@ -16,28 +16,35 @@ class AddCategoryViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter a category name and budget to add a category!", preferredStyle: .alert
+    )
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    
     @IBAction func saveCategory(_ sender: UIButton) {
-        let newCategory = Category(context: context)
-        if self.textFieldCategoryName.text != ""
-        {
+        namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        if (self.textFieldCategoryName.text == "" || self.textFieldCategoryBudget.text == ""){
+            
+            self.present(namealert,animated: true)
+            
+            }
+           
+        else {
+            let newCategory = Category(context: context)
+
             newCategory.name = self.textFieldCategoryName.text
             newCategory.monthlybudget = self.textFieldCategoryBudget.text
 //            newCategory.colour = self.text.text ADD COLOUR PICKER
             newCategory.notes = self.textFieldCategoryNotes.text
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            
-            
-        }
-        else {
-//            UIAlertView(title: "Warning", message: "Please enter a category name", delegate: Any?(nilLiteral), cancelButtonTitle: "back" )
-            //ADD ALERT IF NO CATEGORY NAME IS FILLED OUT
         }
         
     }
