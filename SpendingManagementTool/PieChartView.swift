@@ -13,6 +13,8 @@ struct Segment {
   /// The color of a given segment.
   var color: UIColor
 
+    var name: String
+
   // The value of a given segment – will be used to automatically calculate a
   /// ratio.
   var value: CGFloat
@@ -42,15 +44,15 @@ class PieChartView : UIView {
     isOpaque = false
   }
 
-  override func prepareForInterfaceBuilder() {
-    // Show sample data.
-    segments = [
-      Segment(color: .red,    value: 57),
-      Segment(color: .blue,   value: 30),
-      Segment(color: .green,  value: 25),
-      Segment(color: .yellow, value: 40)
-    ]
-  }
+//  override func prepareForInterfaceBuilder() {
+//    // Show sample data.
+//    segments = [
+//      Segment(color: .red,    value: 57),
+//      Segment(color: .blue,   value: 30),
+//      Segment(color: .green,  value: 25),
+//      Segment(color: .yellow, value: 40)
+//    ]
+//  }
 
   override func draw(_ rect: CGRect) {
 

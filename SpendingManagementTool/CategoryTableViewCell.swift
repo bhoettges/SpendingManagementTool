@@ -1,5 +1,5 @@
 //
-//  ExpenseTableViewCell.swift
+//  CategoryTableViewCell.swift
 //  SpendingManagementTool
 //
 //  Created by Balthasar Hoettges on 13/05/2021.
@@ -7,18 +7,13 @@
 
 import UIKit
 
-class ExpenseTableViewCell: UITableViewCell {
+class CategoryTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelAmount: UILabel!
-    @IBOutlet weak var labelOccurence: UILabel!
-    @IBOutlet weak var labelDueDate: UILabel!
-    @IBOutlet weak var labelReminder: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
-    
+    @IBOutlet weak var labelCategoryName: UILabel!
+    @IBOutlet weak var labelCategoryBudget: UILabel!
+    @IBOutlet weak var labelCategoryNotes: UILabel!
     
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         // Initialization code
     }
@@ -30,3 +25,4 @@ class ExpenseTableViewCell: UITableViewCell {
     }
 
 }
+

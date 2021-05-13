@@ -42,10 +42,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // If appropriate, configure the new managed object.
 
-        newCategory.name = "House"
-        newCategory.colour = "RED"
-        newCategory.monthlybudget = "2300"
-        newCategory.notes = "Only for house expenses"
+//        newCategory.name = "House"
+//        newCategory.colour = "RED"
+//        newCategory.monthlybudget = "2300"
+//        newCategory.notes = "Only for house expenses"
 
         // Save the context.
         do {
@@ -116,6 +116,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func configureCell(_ cell: UITableViewCell, withCategory category: Category) {
+        
         cell.textLabel!.text = category.name
     }
 

@@ -21,6 +21,7 @@
 		855B2407264C0122009C20A9 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B2406264C0122009C20A9 /* AddExpenseViewController.swift */; };
 		857FCB00264D564C007C3CF8 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */; };
 		857FCB0D264D7869007C3CF8 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857FCB0C264D7869007C3CF8 /* PieChartView.swift */; };
+		857FCB10264DC88E007C3CF8 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857FCB0F264DC88E007C3CF8 /* CategoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		855B2406264C0122009C20A9 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		857FCB0C264D7869007C3CF8 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		857FCB0F264DC88E007C3CF8 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				855B23D226498220009C20A9 /* Info.plist */,
 				855B23DB26498B47009C20A9 /* Category.xcdatamodeld */,
 				857FCAFF264D564C007C3CF8 /* ExpenseTableViewCell.swift */,
+				857FCB0F264DC88E007C3CF8 /* CategoryTableViewCell.swift */,
 				857FCB0C264D7869007C3CF8 /* PieChartView.swift */,
 			);
 			path = SpendingManagementTool;
@@ -172,6 +175,7 @@
 				855B23C726498220009C20A9 /* SceneDelegate.swift in Sources */,
 				855B23F8264AA566009C20A9 /* AddCategoryViewController.swift in Sources */,
 				855B23DD26498B47009C20A9 /* Category.xcdatamodeld in Sources */,
+				857FCB10264DC88E007C3CF8 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

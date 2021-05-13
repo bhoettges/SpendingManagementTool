@@ -63,7 +63,7 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
          let green:CGFloat = CGFloat(drand48())
          let blue:CGFloat = CGFloat(drand48())
 
-         return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
+         return UIColor(red:red, green: green, blue: blue, alpha: 0.6)
     }
     
     let pieChartView = PieChartView()
@@ -82,24 +82,20 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
         print("Sum of Expenses: ",sumOfExpenses)
         print("    ")
         let padding: CGFloat = 20
-            let height = (view.frame.height - padding * 3) / 2
+        let height = (view.frame.height - padding * 2) / 3
 
         
         labelCategoryName.text = categoryName
         labelCategoryMonthlyBudget.text = categoryMonthlyBudget
         
         pieChartView.frame = CGRect(
-             x: 0, y: 0,//height + padding * 2,
+             x: 10, y: 5,
              width: view.frame.size.width, height: height
            )
 
-           pieChartView.segments = [
-//             Segment(color: .red,    value: 1),
-//             Segment(color: .blue,   value: 2),
-//             Segment(color: .green,   value: 10),
-           ]
+                    
         for (index, expense) in expenses.enumerated() {
-            pieChartView.segments.append(Segment(color: getRandomColor(), value: CGFloat(expense.amount)))
+            pieChartView.segments.append(Segment(color: getRandomColor(), name:expense.notes ?? "null"  ,value: CGFloat(expense.amount)))
             
         }
         

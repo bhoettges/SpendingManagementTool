@@ -5,6 +5,7 @@
         <attribute name="monthlybudget" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="selected" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="expenseCategory" inverseEntity="Expense"/>
     </entity>
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
@@ -17,7 +18,7 @@
         <relationship name="expenseCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="expenses" inverseEntity="Category"/>
     </entity>
     <elements>
+        <element name="Category" positionX="341.0625" positionY="-288.71875" width="122.15625" height="133"/>
         <element name="Expense" positionX="674.49609375" positionY="-186.85546875" width="128" height="148"/>
-        <element name="Category" positionX="341.0625" positionY="-288.71875" width="122.15625" height="118"/>
     </elements>
 </model>
