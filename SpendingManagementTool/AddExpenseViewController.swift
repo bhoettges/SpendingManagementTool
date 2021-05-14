@@ -32,36 +32,37 @@ class AddExpenseViewController: UIViewController, EKEventEditViewDelegate {
     
     let eventStore = EKEventStore()
     var time = Date()
-
-    let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter an amount and notes to add an expense!", preferredStyle: .alert)
-    let noCategoryAlert = UIAlertController (title: "Warning", message: "Please create a Category before adding an expense.", preferredStyle: .alert)
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func showAlert1(){
+        let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter an amount and notes to add an expense!", preferredStyle: .alert)
+        namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(namealert,animated: true)
         
     }
     
-    func closePopUp(){
-        
-        self.dismiss(animated: true, completion: nil)
+    func showAlert2(){
+        let noCategoryAlert = UIAlertController (title: "Warning", message: "Please create a Category before adding an expense.", preferredStyle: .alert)
+        noCategoryAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(noCategoryAlert, animated: true)
+    }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func closePopUp(){
+        self.dismiss(animated: true, completion: nil)
     }
     
     
     @IBAction func saveExpense(_ sender: UIButton) {
-        namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        noCategoryAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         if (self.category == nil){
-            self.present(noCategoryAlert, animated: true)
-            
+            showAlert2()
         }
        
         else if (self.textFieldAmount.text == "" || self.textFieldNotes.text == ""){
-                self.present(namealert,animated: true)
-                
+            showAlert1()
         }
         else {
             let newexpense = Expense(context: context)

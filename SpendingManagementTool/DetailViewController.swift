@@ -120,9 +120,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let calculation = Float(progress) 
             cell.progressView.progress = calculation
             
-            print("PROGRESSSS:",progress)
-            print("PROGRESSSS2222:",calculation)
-            
+          
             if (occurence == 0){
                 cell.labelOccurence.text = "One off"
             }

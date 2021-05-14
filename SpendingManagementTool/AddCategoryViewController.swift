@@ -17,8 +17,17 @@ class AddCategoryViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter a category name and budget to add a category!", preferredStyle: .alert
-    )
+    
+    
+    func alert() {
+        let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter a category name and budget to add a category!", preferredStyle: .alert
+        )
+        namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(namealert,animated: true)
+
+        
+    }
+    
     
     
     override func viewDidLoad() {
@@ -35,13 +44,13 @@ class AddCategoryViewController: UIViewController {
     }
     
     @IBAction func saveCategory(_ sender: UIButton) {
-        namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+      
+        
         
         
         
         if (self.textFieldCategoryName.text == "" || self.textFieldCategoryBudget.text == ""){
-            
-            self.present(namealert,animated: true)
+            alert()
             
             }
            

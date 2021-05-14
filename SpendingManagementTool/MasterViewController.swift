@@ -21,11 +21,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
-        
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+
         }
     }
 
@@ -37,7 +36,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     @objc
     func insertNewObject(_ sender: Any) {
         let context = self.fetchedResultsController.managedObjectContext
-        
         // Save the context.
         do {
             try context.save()
@@ -74,18 +72,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let sectionInfo = fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
-        
         configureCell(cell, indexPath: indexPath)
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -137,42 +131,90 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             cell.backgroundColor = UIColor(red: 255/255, green: 190/255, blue: 118/255, alpha: 1.0)
         }
         
-            
-            
         cell.labelCategoryName.text = name
         cell.labelCategoryNotes.text = notes
         cell.labelCategoryBudget.text = String(budget!)
         
-        
-        
     }
+    @IBAction func sortByBudget(_ sender: Any) {
+        
+        do {
+            let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+            
+            fetchRequest.fetchBatchSize = 20
+            
+            let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
+            
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            
+            let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+            aFetchedResultsController.delegate = self
+            _fetchedResultsController = aFetchedResultsController
+            
+            try _fetchedResultsController!.performFetch()
+            self.tableView.reloadData()
+        }
 
+        catch{
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+    
+    @IBAction func sortAlphabetically(_ sender: Any) {
+        
+        do {
+            let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+            
+            fetchRequest.fetchBatchSize = 20
+            
+            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+            
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            
+            let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+            aFetchedResultsController.delegate = self
+            _fetchedResultsController = aFetchedResultsController
+            
+            try _fetchedResultsController!.performFetch()
+            self.tableView.reloadData()
+        }
+
+        catch{
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+
+           
+    }
     // MARK: - Fetched results controller
 
     var fetchedResultsController: NSFetchedResultsController<Category> {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
-        
+
         let fetchRequest: NSFetchRequest<Category> =
             Category.fetchRequest()
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
+        // if button is pressed -> ascending true, else ascending false
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
+
         
         do {
             try _fetchedResultsController!.performFetch()
+            print("fetchedddddddd")
         } catch {
              // Replace this implementation with code to handle the error appropriately.
              // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -182,6 +224,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         return _fetchedResultsController!
     }
+    
     var _fetchedResultsController: NSFetchedResultsController<Category>? = nil
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

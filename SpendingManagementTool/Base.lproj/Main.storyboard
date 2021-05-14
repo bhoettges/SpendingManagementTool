@@ -246,6 +246,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Expense Categories" id="Zdf-7t-Un8">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="arrow.up.arrow.down" catalog="system" id="cGK-2m-cOB">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="sortAlphabetically:" destination="7bK-jq-Zjz" id="KJm-bB-aa9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="dollarsign.circle" catalog="system" id="VQz-uO-bmD">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="sortByBudget:" destination="7bK-jq-Zjz" id="UAw-dx-57x"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pPM-FS-6UU">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
@@ -529,6 +543,8 @@
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.up.arrow.down" catalog="system" width="128" height="98"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

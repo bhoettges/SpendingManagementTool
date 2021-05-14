@@ -17,6 +17,7 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
     
     var categoryName = ""
     var categoryMonthlyBudget = ""
+    var categorySelected = ""
     var category:Category?
     var expensename:Expense?
     
@@ -74,18 +75,17 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
     let pieChartView = PieChartView()
     
     var sumOfExpenses = 0.0
+    var sumOfSelected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         expenses = fetchedResultsController.fetchedObjects!
-        
+                
         for (index, expense) in expenses.enumerated() {
             print("Amount \(index):",expense.amount)
-            
             sumOfExpenses = sumOfExpenses+expense.amount
         }
-        print("Sum of Expenses: ",sumOfExpenses)
-        print("    ")
+     
         let padding: CGFloat = 10
         let height = (view.frame.height - padding * 2) / 3
 
