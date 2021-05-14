@@ -13,6 +13,7 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var textFieldCategoryName: UITextField!
     @IBOutlet weak var textFieldCategoryBudget: UITextField!
     @IBOutlet weak var textFieldCategoryNotes: UITextField!
+    @IBOutlet weak var ColorPicker: UISegmentedControl!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -30,9 +31,13 @@ class AddCategoryViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func updateData(){
+    }
     
     @IBAction func saveCategory(_ sender: UIButton) {
         namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        
         
         if (self.textFieldCategoryName.text == "" || self.textFieldCategoryBudget.text == ""){
             
@@ -44,11 +49,14 @@ class AddCategoryViewController: UIViewController {
             let newCategory = Category(context: context)
 
             newCategory.name = self.textFieldCategoryName.text
-            newCategory.monthlybudget = self.textFieldCategoryBudget.text
+            newCategory.monthlybudget = Double(self.textFieldCategoryBudget.text!)!
+            newCategory.colour = Int16(ColorPicker.selectedSegmentIndex)
+
 //            newCategory.colour = self.text.text ADD COLOUR PICKER
             newCategory.notes = self.textFieldCategoryNotes.text
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             closePopUp()
+            updateData()
             
         }
         

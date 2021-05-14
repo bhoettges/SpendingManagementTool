@@ -12,11 +12,15 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
 
     @IBOutlet weak var labelCategoryName: UILabel!
     @IBOutlet weak var labelCategoryMonthlyBudget: UILabel!
+    @IBOutlet weak var labelCategorySpent: UILabel!
+    @IBOutlet weak var labelCategoryRemaining: UILabel!
     
     var categoryName = ""
     var categoryMonthlyBudget = ""
     var category:Category?
     var expensename:Expense?
+    
+    
     
     var expenses = [Expense]()
     
@@ -88,6 +92,22 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
         
         labelCategoryName.text = categoryName
         labelCategoryMonthlyBudget.text = categoryMonthlyBudget
+        labelCategorySpent.text = String(sumOfExpenses)
+        
+        let budget = Double(categoryMonthlyBudget) ?? 0.0
+        let remaining = budget - sumOfExpenses
+        
+        if (sumOfExpenses > Double(categoryMonthlyBudget) ?? 0.0){
+            
+            labelCategoryRemaining.text = String(remaining)
+        
+        }
+        else if (sumOfExpenses < Double(categoryMonthlyBudget) ?? 0.0){
+
+            labelCategoryRemaining.text = String(remaining)
+
+        }
+        
         
         pieChartView.frame = CGRect(
              x: 3, y: 3,
@@ -95,8 +115,9 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
            )
 
                     
-        for (index, expense) in expenses.enumerated() {
+        for (_, expense) in expenses.enumerated() {
             pieChartView.segments.append(Segment(color: getRandomColor(), name:expense.notes!  ,value: CGFloat(expense.amount)))
+            
             
         }
         

@@ -12,7 +12,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
-    let cellSelColour:UIColor = UIColor (red: 0.0, green: 1.0, blue: 0.0, alpha: 0.1)
+    let cellSelColour:UIColor = UIColor (red: 200/255, green: 214/255, blue:229/255, alpha: 0.8)
 
 
     
@@ -104,6 +104,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let date = self.fetchedResultsController.fetchedObjects?[indexPath.row].date
             let occurence = self.fetchedResultsController.fetchedObjects?[indexPath.row].occurrence
             let reminderflag = self.fetchedResultsController.fetchedObjects?[indexPath.row].reminderflag
+            let budget = category?.monthlybudget
+            
+            let progress = amount! / budget!
+        
+            
             
             let formatter1 = DateFormatter()
             formatter1.dateStyle = .short
@@ -111,6 +116,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.labelDueDate.text = (formatter1.string(from: date!))
             cell.labelName.text = notes
             cell.labelAmount.text = String(amount ?? 0)
+            
+            let calculation = Float(progress) 
+            cell.progressView.progress = calculation
+            
+            print("PROGRESSSS:",progress)
+            print("PROGRESSSS2222:",calculation)
             
             if (occurence == 0){
                 cell.labelOccurence.text = "One off"
@@ -197,8 +208,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
-    
     // MARK: NAVIGATION
     
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
@@ -213,7 +222,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 if let monthlybudget = self.category?.monthlybudget{
                     
-                    destVC.categoryMonthlyBudget = monthlybudget
+                    destVC.categoryMonthlyBudget = String(monthlybudget)
                 
                     
                 }

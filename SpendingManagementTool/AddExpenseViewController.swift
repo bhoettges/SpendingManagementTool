@@ -99,7 +99,6 @@ class AddExpenseViewController: UIViewController, EKEventEditViewDelegate {
 
 
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            
             //update PIE CHART!
             
                 

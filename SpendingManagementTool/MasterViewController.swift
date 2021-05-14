@@ -12,6 +12,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
+    var category: Category?
+    
     let cellSelColour:UIColor = UIColor (red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2)
     
 
@@ -20,9 +22,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
-
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-//        navigationItem.rightBarButtonItem = addButton
         
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -38,15 +37,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     @objc
     func insertNewObject(_ sender: Any) {
         let context = self.fetchedResultsController.managedObjectContext
-        let newCategory = Category(context: context)
         
-        // If appropriate, configure the new managed object.
-
-//        newCategory.name = "House"
-//        newCategory.colour = "RED"
-//        newCategory.monthlybudget = "2300"
-//        newCategory.notes = "Only for house expenses"
-
         // Save the context.
         do {
             try context.save()
@@ -88,10 +79,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
         
         configureCell(cell, indexPath: indexPath)
-//        let category = fetchedResultsController.object(at: indexPath)
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = self.cellSelColour
-//        cell.selectedBackgroundView = backgroundView
         return cell
     }
 
@@ -116,19 +103,45 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    var category: Category?
-
 
     func configureCell(_ cell: CategoryTableViewCell, indexPath: IndexPath) {
         
             let name = self.fetchedResultsController.fetchedObjects?[indexPath.row].name
             let notes = self.fetchedResultsController.fetchedObjects?[indexPath.row].notes
             let budget = self.fetchedResultsController.fetchedObjects?[indexPath.row].monthlybudget
+            let colour =
+                (self.fetchedResultsController.fetchedObjects?[indexPath.row].colour)
+        
+        if (colour == 0){
+            //RED
+            cell.backgroundColor = UIColor(red: 255/255, green: 121/255, blue: 121.0/255, alpha: 0.8)
+        }
+        else if (colour == 1){
+            //BLUE
+            cell.backgroundColor = UIColor(red: 34/255, green: 166/255, blue: 179/255, alpha: 0.9)
+        }
+        else if (colour == 2){
+            //GREEN
+            cell.backgroundColor = UIColor(red: 186/255, green: 220/255, blue: 88/255, alpha: 1.0)
+        }
+        else if (colour == 3){
+            //PURPLE
+            cell.backgroundColor = UIColor(red: 224/255, green: 86/255, blue: 253/255, alpha: 0.7)
+        }
+        else if (colour == 4){
+            //YELLOW
+            cell.backgroundColor = UIColor(red: 246/255, green: 229/255, blue: 141/255, alpha: 1.0)
+        }
+        else if (colour == 5){
+            //ORANGE
+            cell.backgroundColor = UIColor(red: 255/255, green: 190/255, blue: 118/255, alpha: 1.0)
+        }
+        
             
             
         cell.labelCategoryName.text = name
         cell.labelCategoryNotes.text = notes
-        cell.labelCategoryBudget.text = budget
+        cell.labelCategoryBudget.text = String(budget!)
         
         
         
