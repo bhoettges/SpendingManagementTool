@@ -4,24 +4,35 @@
 //
 //  Created by Balthasar Hoettges on 12/05/2021.
 //
-
+import EventKit
+import EventKitUI
 import UIKit
 
-class AddExpenseViewController: UIViewController {
-
-
+class AddExpenseViewController: UIViewController, EKEventEditViewDelegate {
+    
     @IBOutlet weak var textFieldAmount: UITextField!
     @IBOutlet weak var textFieldNotes: UITextField!
     @IBOutlet weak var OccurenceControl: UISegmentedControl!
     @IBOutlet weak var DatePicker: UIDatePicker!
     @IBOutlet weak var switchToggleCalendar: UISwitch!
-    
     @IBOutlet weak var labelCategoryName: UILabel!
+  
     
     var category: Category?
     var expense: Expense?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    
+    
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        controller.dismiss(animated: true, completion: nil)
+        closePopUp()
+
+    }
+    
+    let eventStore = EKEventStore()
+    var time = Date()
+
     let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter an amount and notes to add an expense!", preferredStyle: .alert)
     let noCategoryAlert = UIAlertController (title: "Warning", message: "Please create a Category before adding an expense.", preferredStyle: .alert)
     
@@ -29,8 +40,13 @@ class AddExpenseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.labelCategoryName.text = self.category?.name
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    func closePopUp(){
+        
+        self.dismiss(animated: true, completion: nil)
+
     }
     
     
@@ -56,13 +72,34 @@ class AddExpenseViewController: UIViewController {
             newexpense.date = self.DatePicker.date
             newexpense.expenseCategory = category
             newexpense.occurrence = Int16(OccurenceControl.selectedSegmentIndex)
-            newexpense.reminderflag = switchToggleCalendar.isOn
             
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            if (switchToggleCalendar.isOn == true){
+                eventStore.requestAccess(to: EKEntityType.event, completion: {(granted, error) in
+                                            DispatchQueue.main.async {
+                                                if (granted) && (error == nil){
+                                                    let event = EKEvent(eventStore: self.eventStore)
+                                                    event.title = newexpense.notes
+                                                    event.startDate = newexpense.date
+                                                    event.endDate = newexpense.date
+                                                    event.url = URL(string: "Created by Spending Mangement Tool. -Balthasar Hoettges")
+                                                    let eventController = EKEventEditViewController()
+                                                    eventController.event = event
+                                                    eventController.eventStore = self.eventStore
+                                                    eventController.editViewDelegate = self
+                                                    self.present(eventController, animated: true, completion: nil)
+                                                }
+                                                
+                                            }})
                 
+            }
+            else{
+                
+                
+            }
+
+
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            
-                print("expense:", newexpense)
             //update PIE CHART!
             
                 

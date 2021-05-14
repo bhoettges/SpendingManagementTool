@@ -26,6 +26,10 @@ class AddCategoryViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func closePopUp(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     @IBAction func saveCategory(_ sender: UIButton) {
         namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -44,6 +48,7 @@ class AddCategoryViewController: UIViewController {
 //            newCategory.colour = self.text.text ADD COLOUR PICKER
             newCategory.notes = self.textFieldCategoryNotes.text
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            closePopUp()
             
         }
         

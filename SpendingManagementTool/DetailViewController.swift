@@ -129,7 +129,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.labelReminder.text = "Reminder Set"
             }
             else{
-                cell.labelReminder.text = "Reminder not Set"
+                cell.labelReminder.text = "No Reminder"
             }
             
             cell.backgroundColor = self.cellSelColour
