@@ -100,11 +100,14 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
         if (sumOfExpenses > Double(categoryMonthlyBudget) ?? 0.0){
             
             labelCategoryRemaining.text = String(remaining)
+            labelCategoryRemaining.textColor = UIColor(red: 255/255, green: 121/255, blue: 121.0/255, alpha: 1.0)
         
         }
         else if (sumOfExpenses < Double(categoryMonthlyBudget) ?? 0.0){
 
             labelCategoryRemaining.text = String(remaining)
+            labelCategoryRemaining.textColor = UIColor(red: 186/255, green: 220/255, blue: 88/255, alpha: 1.0)
+
 
         }
         

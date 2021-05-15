@@ -60,7 +60,7 @@ class PieChartView : UIView {
     guard let ctx = UIGraphicsGetCurrentContext() else { return }
 
     // Radius is the half the frame's width or height (whichever is smallest).
-    let radius = min(frame.size.width, frame.size.height) * 0.5
+    let radius = min(frame.size.width, frame.size.height) * 0.4
 
     // Center of the view.
     let viewCenter = CGPoint(x: bounds.size.width * 0.5, y: bounds.size.height * 0.5)

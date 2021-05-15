@@ -103,8 +103,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let name = self.fetchedResultsController.fetchedObjects?[indexPath.row].name
             let notes = self.fetchedResultsController.fetchedObjects?[indexPath.row].notes
             let budget = self.fetchedResultsController.fetchedObjects?[indexPath.row].monthlybudget
-            let colour =
-                (self.fetchedResultsController.fetchedObjects?[indexPath.row].colour)
+            let colour = self.fetchedResultsController.fetchedObjects?[indexPath.row].colour
+    
         
         if (colour == 0){
             //RED
@@ -134,7 +134,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.labelCategoryName.text = name
         cell.labelCategoryNotes.text = notes
         cell.labelCategoryBudget.text = String(budget!)
-        
     }
     @IBAction func sortByBudget(_ sender: Any) {
         
@@ -143,7 +142,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             
             fetchRequest.fetchBatchSize = 20
             
-            let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
+            let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSNumber.compare(_:)))
             
             fetchRequest.sortDescriptors = [sortDescriptor]
             
@@ -202,7 +201,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // if button is pressed -> ascending true, else ascending false
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSString.localizedStandardCompare(_:)))
+        let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSNumber.compare(_:)))
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         

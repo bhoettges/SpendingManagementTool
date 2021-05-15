@@ -20,7 +20,7 @@ class AddCategoryViewController: UIViewController {
     
     
     func alert() {
-        let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter a category name and budget to add a category!", preferredStyle: .alert
+        let namealert = UIAlertController (title: "Wrong Input!", message: "Please enter a category name, budget and color to add a category!", preferredStyle: .alert
         )
         namealert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(namealert,animated: true)
@@ -28,10 +28,9 @@ class AddCategoryViewController: UIViewController {
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ColorPicker.selectedSegmentIndex = 0
 
         // Do any additional setup after loading the view.
     }
@@ -44,10 +43,6 @@ class AddCategoryViewController: UIViewController {
     }
     
     @IBAction func saveCategory(_ sender: UIButton) {
-      
-        
-        
-        
         
         if (self.textFieldCategoryName.text == "" || self.textFieldCategoryBudget.text == ""){
             alert()
@@ -60,12 +55,10 @@ class AddCategoryViewController: UIViewController {
             newCategory.name = self.textFieldCategoryName.text
             newCategory.monthlybudget = Double(self.textFieldCategoryBudget.text!)!
             newCategory.colour = Int16(ColorPicker.selectedSegmentIndex)
-
-//            newCategory.colour = self.text.text ADD COLOUR PICKER
+            
             newCategory.notes = self.textFieldCategoryNotes.text
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             closePopUp()
-            updateData()
             
         }
         
