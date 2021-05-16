@@ -19,70 +19,81 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
     var categoryMonthlyBudget = ""
     var categorySelected = ""
     var category:Category?
-    var expensename:Expense?
     
-    
-    
-    var expenses = [Expense]()
-    
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var _fetchedResultsController: NSFetchedResultsController<Expense>? = nil
-    
-    var fetchedResultsController: NSFetchedResultsController<Expense> {
-        if _fetchedResultsController != nil {
-            return _fetchedResultsController!
-        }
-        
-        //build the fetch request
-        let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
-        
-        let sortDescriptor = NSSortDescriptor(key: "amount", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
-        //add the sort to the request
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        let predicate = NSPredicate(format: "category = %@", categoryName)
-        fetchRequest.predicate = predicate
-
-        let aFetchedResultsController = NSFetchedResultsController<Expense>(
-            fetchRequest: fetchRequest,
-            managedObjectContext: managedObjectContext, sectionNameKeyPath: #keyPath(Expense.category),cacheName: nil)
-        //set the delegate
-        aFetchedResultsController.delegate = self
-        
-        _fetchedResultsController = aFetchedResultsController
-        
-        //preform the fetch
-        do {
-            try _fetchedResultsController!.performFetch()
-            
-        } catch{
-          let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        
-        }
-        
-        return _fetchedResultsController!
-    }
-    func getRandomColor() -> UIColor {
-         //Generate between 0 to 1
-         let red:CGFloat = CGFloat(drand48())
-         let green:CGFloat = CGFloat(drand48())
-         let blue:CGFloat = CGFloat(drand48())
-
-         return UIColor(red:red, green: green, blue: blue, alpha: 0.6)
-    }
-    
-    let pieChartView = PieChartView()
-    
-    var sumOfExpenses = 0.0
-    var sumOfSelected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createPieChart()
+    }
+    
+//    func viewWillAppear() {
+//        createPieChart()
+//
+//    }
+    
+    
+    func createPieChart(){
+       
+        var expenses = [Expense]()
+        
+        let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var _fetchedResultsController: NSFetchedResultsController<Expense>? = nil
+        
+        var fetchedResultsController: NSFetchedResultsController<Expense> {
+            if _fetchedResultsController != nil {
+                return _fetchedResultsController!
+            }
+            
+            //build the fetch request
+            let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
+            
+            let sortDescriptor = NSSortDescriptor(key: "amount", ascending: false, selector: #selector(NSNumber.compare(_:)))
+            //add the sort to the request
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            
+            let predicate = NSPredicate(format: "category = %@", categoryName)
+            fetchRequest.predicate = predicate
+
+            let aFetchedResultsController = NSFetchedResultsController<Expense>(
+                fetchRequest: fetchRequest,
+                managedObjectContext: managedObjectContext, sectionNameKeyPath: #keyPath(Expense.category),cacheName: nil)
+            //set the delegate
+            aFetchedResultsController.delegate = self
+            
+            _fetchedResultsController = aFetchedResultsController
+            
+            //preform the fetch
+            do {
+                try _fetchedResultsController!.performFetch()
+                
+            } catch{
+              let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            
+            }
+            
+            return _fetchedResultsController!
+        }
+        
+        func getRandomColor() -> UIColor {
+            
+            
+            
+             //Generate between 0 to 1
+             let red:CGFloat = CGFloat(drand48())
+             let green:CGFloat = CGFloat(drand48())
+             let blue:CGFloat = CGFloat(drand48())
+
+             return UIColor(red:red, green: green, blue: blue, alpha: 0.6)
+        }
+        
+        let pieChartView = PieChartView()
+        
+        var sumOfExpenses = 0.0
+        
         expenses = fetchedResultsController.fetchedObjects!
                 
         for (index, expense) in expenses.enumerated() {
-            print("Amount \(index):",expense.amount)
             sumOfExpenses = sumOfExpenses+expense.amount
         }
      
@@ -107,8 +118,6 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
 
             labelCategoryRemaining.text = String(remaining)
             labelCategoryRemaining.textColor = UIColor(red: 186/255, green: 220/255, blue: 88/255, alpha: 1.0)
-
-
         }
         
         
@@ -117,17 +126,24 @@ class CategoryDetailViewController: UIViewController, NSFetchedResultsController
              width: view.frame.size.width, height: height
            )
 
-                    
-        for (_, expense) in expenses.enumerated() {
-            pieChartView.segments.append(Segment(color: getRandomColor(), name:expense.notes!  ,value: CGFloat(expense.amount)))
+        var remainingExpenses = 0.0
+        
+        for (index, expense) in expenses.enumerated() {
             
-            
+            if (index <= 3){
+            pieChartView.segments.append(LabelledSegment(color: getRandomColor(), name:expense.notes!  ,value: CGFloat(expense.amount)))
+
+            }
+            else {
+               remainingExpenses += expense.amount
+            }
+        
+        }
+        if (remainingExpenses != 0.0) {
+        pieChartView.segments.append(LabelledSegment(color: UIColor(red: 0.9, green: 1.0, blue: 1.0, alpha: 1.0), name: "others", value: CGFloat(remainingExpenses)))
         }
         
-        
            view.addSubview(pieChartView)
-        
-        
     }
     
     

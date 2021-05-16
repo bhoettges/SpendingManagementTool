@@ -14,7 +14,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let cellSelColour:UIColor = UIColor (red: 200/255, green: 214/255, blue:229/255, alpha: 0.8)
 
-
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -47,9 +46,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         configureCell(cell, indexPath:indexPath)
         return cell
     }
+    
+    func addcounter(){
+        self.category?.setValue(self.category!.selected + 1, forKey: "selected")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addcounter()
+        print("Selected counter: ", self.category?.selected as Any)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -68,7 +74,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //build the fetch request
         let fetchRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
         //add a sort descriptor
-        let sortDescriptor = NSSortDescriptor(key: "notes", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+        let sortDescriptor = NSSortDescriptor(key: "amount", ascending: false, selector: #selector(NSNumber.compare(_:)))
         //add the sort to the request
         fetchRequest.sortDescriptors = [sortDescriptor]
         //add the predicate
@@ -107,7 +113,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let budget = category?.monthlybudget
             
             let progress = amount! / budget!
-        
             
             
             let formatter1 = DateFormatter()
@@ -137,7 +142,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if (reminderflag == true){
                 cell.labelReminder.text = "Reminder Set"
             }
-            else{
+            else if (reminderflag == false) {
                 cell.labelReminder.text = "No Reminder"
             }
             

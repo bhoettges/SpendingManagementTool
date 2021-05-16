@@ -23,7 +23,6 @@ class AddExpenseViewController: UIViewController, EKEventEditViewDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
-    
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         controller.dismiss(animated: true, completion: nil)
         closePopUp()
@@ -87,21 +86,17 @@ class AddExpenseViewController: UIViewController, EKEventEditViewDelegate {
                                                     eventController.event = event
                                                     eventController.eventStore = self.eventStore
                                                     eventController.editViewDelegate = self
+                                                    newexpense.reminderflag = true
                                                     self.present(eventController, animated: true, completion: nil)
+                                                    
                                                 }
                                                 
                                             }})
                 
             }
-            else{
-                
-                
-            }
-
-
+        
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             //update PIE CHART!
-            
                 
         }
     }

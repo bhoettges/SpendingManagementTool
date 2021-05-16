@@ -202,7 +202,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // if button is pressed -> ascending true, else ascending false
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "monthlybudget", ascending: false, selector: #selector(NSNumber.compare(_:)))
+        let sortDescriptor = NSSortDescriptor(key: "selected", ascending: false, selector: #selector(NSNumber.compare(_:)))
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
