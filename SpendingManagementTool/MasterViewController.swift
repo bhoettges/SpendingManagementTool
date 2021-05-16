@@ -169,6 +169,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             
             let sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
             
+            
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
