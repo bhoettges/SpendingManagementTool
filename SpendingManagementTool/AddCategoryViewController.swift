@@ -48,12 +48,17 @@ class AddCategoryViewController: UIViewController {
             alert()
             
             }
-           
+        
+            
+                   
         else {
             let newCategory = Category(context: context)
 
             newCategory.name = self.textFieldCategoryName.text
+            
+    
             newCategory.monthlybudget = Double(self.textFieldCategoryBudget.text!)!
+            
             newCategory.colour = Int16(ColorPicker.selectedSegmentIndex)
             
             newCategory.notes = self.textFieldCategoryNotes.text
